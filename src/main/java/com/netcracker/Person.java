@@ -83,4 +83,7 @@ public class Person {
      */
     public LocalDate getBirthDate(){ return birthDate;
     }
+     public String toString(){
+        return "Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
+     }
 }

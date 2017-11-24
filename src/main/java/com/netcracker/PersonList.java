@@ -1,4 +1,10 @@
 package com.netcracker;
+// сделать возможнотсь сортировки людей по фамилии, по возрасту, по id.сделать универсально.
+// использовать разные виды сортировок. поиск (по тем же параметрам)
+//
+// добавить поддержку unitest (подсчет возраста, сортировка)
+
+import java.util.Comparator;
 
 /**
  * Класс списка людей
@@ -92,5 +98,40 @@ public class PersonList {
             if (people[i] == null) break;
             System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate());
         }
+    }
+
+    public Person getPersonBy(int ID){
+        for(int i=0; i<people.length; i++){
+            if(people[i].getID() == ID)
+                return people[i];
+        }
+        return null;
+    }
+
+    public Person getPersonBy(String surname){
+        for(int i=0; i<people.length; i++){
+            if (people[i].getSurname().equals(surname)) {
+                return people[i];
+            }
+        }
+        return null;
+    }
+
+    private Person[] bubbleSort(Person[] mas, Comparator<Person> comp){
+        Person temp;
+        for(int i=0; i<counter-1; i++){
+            for(int j=counter-1; j>i; j--){
+                if(comp.compare(mas[j-1], mas[j])>=1){ //mas[j] < mas[j-1]){
+                    temp=mas[j];
+                    mas[j] = mas[j-1];
+                    mas[j-1] = temp;
+                }
+            }
+        }
+        return mas;
+    }
+
+    public Person[] sortPersonBy(Comparator<Person> comp){
+        return bubbleSort(people, comp);
     }
 }
