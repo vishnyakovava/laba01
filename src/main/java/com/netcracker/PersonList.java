@@ -100,7 +100,7 @@ public class PersonList {
         }
     }
 
-    public Person getPersonBy(int ID){
+    public Person getPersonBy(int ID){ //поиск по ID
         for(int i=0; i<people.length; i++){
             if(people[i].getID() == ID)
                 return people[i];
@@ -108,7 +108,7 @@ public class PersonList {
         return null;
     }
 
-    public Person getPersonBy(String surname){
+    public Person getPersonBy(String surname){ //поиск по surname
         for(int i=0; i<people.length; i++){
             if (people[i].getSurname().equals(surname)) {
                 return people[i];
@@ -131,7 +131,41 @@ public class PersonList {
         return mas;
     }
 
-    public Person[] sortPersonBy(Comparator<Person> comp){
-        return bubbleSort(people, comp);
+    public Person[] shakerSort(Person[] mas, Comparator<Person> comp){
+        boolean wasSwapped;
+        Person temp;
+        do {
+            wasSwapped=false;
+            for (int i = 0; i < counter - 2; i++) {
+                if (comp.compare(mas[i], mas[i + 1])>=1) {
+                    temp = mas[i];
+                    mas[i]=mas[i+1];
+                    mas[i+1]=temp;
+                    wasSwapped=true;
+                }
+            }
+
+            if(!wasSwapped) break;
+
+            for (int j = counter - 2; j >= 0; j--) {
+                if(comp.compare(mas[j],mas[j+1])>=1){
+                    temp = mas[j];
+                    mas[j]=mas[j+1];
+                    mas[j+1]=temp;
+                    wasSwapped=true;
+                }
+            }
+
+        } while(wasSwapped);
+        return mas;
+    }
+
+    public Person[] sortPersonBy(Comparator<Person> comp, int change){
+        switch(change){
+            case 1: return bubbleSort(people, comp);
+            case 2: return shakerSort(people, comp);
+            default: return null;
+        }
+
     }
 }

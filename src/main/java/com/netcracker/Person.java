@@ -32,7 +32,7 @@ public class Person {
      * Метод подсчета возраста
      * @return возраст человека
      */
-    public int age(){
+    public int getAge(){
         int age=0;
         DateTime current = new DateTime();
         age = current.getYear() - birthDate.getYear();
