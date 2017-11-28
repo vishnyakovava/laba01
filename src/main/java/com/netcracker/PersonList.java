@@ -4,6 +4,8 @@ package com.netcracker;
 //
 // добавить поддержку unitest (подсчет возраста, сортировка)
 
+
+import  java.util.function.Predicate;
 import java.util.Comparator;
 
 /**
@@ -91,13 +93,27 @@ public class PersonList {
     }
 
     /**
-     * Метод выода элементов списка людей
+     * Метод вывода элементов списка людей
      */
     public void printPeople(){
         for(int i=0; i<people.length; i++){
             if (people[i] == null) break;
             System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate() +" Age: "+people[i].getAge());
         }
+    }
+
+
+    /**
+     * Универсальный поиск по коллекции
+     * @param predicate - предикат
+     * @return объект, найденный по параметру поиска
+     */
+    public Person findPerson(Predicate<Person> predicate){
+        for(int i=0; i<people.length; i++){
+            if(predicate.test(people[i]))
+                return people[i];
+        }
+        return null;
     }
 
     /**
@@ -191,6 +207,8 @@ public class PersonList {
      */
     public Person[] sortPersonBy(Comparator<Person> comp, int change){
         switch(change){
+
+
             case 1: return bubbleSort(people, comp);
             case 2: return shakerSort(people, comp);
             default: return null;

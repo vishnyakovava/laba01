@@ -1,7 +1,13 @@
 package com.netcracker;
 import org.joda.time.LocalDate;
+// разобаться с properties, создать пустой файл с расширением properties, в нем sorter=bubble
+// в этом файле будет храниться конфигурация приложения
+// напистаь класс Configurator, считывает файл properties и возвращает результаты
+//public static Configurator(), getInstance(),
+// sorter = Configurator.getInstance().getSorter()
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 /**
  * Hello world!
@@ -36,8 +42,26 @@ public class App
         list.printPeople();
 
         System.out.println("Search:");
-        System.out.println(list.getPersonBy(1).toString());
-        System.out.println(list.getPersonBy("Nasonova"));
+       /* System.out.println(list.getPersonBy(1).toString());
+        System.out.println(list.getPersonBy("Nasonova"));*/
+
+        Person p = list.findPerson(new Predicate<Person>() {
+            @Override
+            public boolean test(Person person) {
+                return person.getSurname().equals("Sidorov");
+            }
+        });
+        if(p != null) System.out.println(p.toString());
+        else System.out.println("Didn't find this person");
+
+        Person p2 =list.findPerson(new Predicate<Person>() {
+            @Override
+            public boolean test(Person person) {
+                return person.getID()==5;
+            }
+        });
+        if(p2!= null) System.out.println(p2.toString());
+        else System.out.println("Didn't find this person");
 
 
         System.out.println("Cases: 1 for bubble sort, 2 for shaker sort");
