@@ -96,10 +96,15 @@ public class PersonList {
     public void printPeople(){
         for(int i=0; i<people.length; i++){
             if (people[i] == null) break;
-            System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate());
+            System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate() +" Age: "+people[i].getAge());
         }
     }
 
+    /**
+     * Поиск в коллекции по ID
+     * @param ID - индентификатор человека
+     * @return объект класса Person с соответствующим ID
+     */
     public Person getPersonBy(int ID){ //поиск по ID
         for(int i=0; i<people.length; i++){
             if(people[i].getID() == ID)
@@ -108,6 +113,11 @@ public class PersonList {
         return null;
     }
 
+    /**
+     * Поиск в коллекции по фамилии
+     * @param surname - фамилия
+     * @return объект класса Person с соответствующей фамлиией
+     */
     public Person getPersonBy(String surname){ //поиск по surname
         for(int i=0; i<people.length; i++){
             if (people[i].getSurname().equals(surname)) {
@@ -117,11 +127,17 @@ public class PersonList {
         return null;
     }
 
+    /**
+     * сортировка пузырьком
+     * @param mas  - массив, который сортируем
+     * @param comp - компаратор
+     * @return отсортированный массив
+     */
     private Person[] bubbleSort(Person[] mas, Comparator<Person> comp){
         Person temp;
         for(int i=0; i<counter-1; i++){
             for(int j=counter-1; j>i; j--){
-                if(comp.compare(mas[j-1], mas[j])>=1){ //mas[j] < mas[j-1]){
+                if(comp.compare(mas[j-1], mas[j])>=1){
                     temp=mas[j];
                     mas[j] = mas[j-1];
                     mas[j-1] = temp;
@@ -131,6 +147,12 @@ public class PersonList {
         return mas;
     }
 
+    /**
+     * Шейкерная сортировка
+     * @param mas - массив, который сортируем
+     * @param comp - компаратор
+     * @return отсортированный массив
+     */
     public Person[] shakerSort(Person[] mas, Comparator<Person> comp){
         boolean wasSwapped;
         Person temp;
@@ -147,7 +169,8 @@ public class PersonList {
 
             if(!wasSwapped) break;
 
-            for (int j = counter - 2; j >= 0; j--) {
+            wasSwapped=false;
+            for (int j = counter-2; j >= 0; j--) {
                 if(comp.compare(mas[j],mas[j+1])>=1){
                     temp = mas[j];
                     mas[j]=mas[j+1];
@@ -160,6 +183,12 @@ public class PersonList {
         return mas;
     }
 
+    /**
+     * сортировка
+     * @param comp - компаратор
+     * @param change - переменная для кейсов
+     * @return оотсортированный массив выбранной сортиовкой
+     */
     public Person[] sortPersonBy(Comparator<Person> comp, int change){
         switch(change){
             case 1: return bubbleSort(people, comp);

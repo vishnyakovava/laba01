@@ -33,9 +33,11 @@ public class Person {
      * @return возраст человека
      */
     public int getAge(){
-        int age=0;
         DateTime current = new DateTime();
-        age = current.getYear() - birthDate.getYear();
+        int age = current.getYear() - birthDate.getYear();
+        int month = birthDate.getMonthOfYear();
+        if(birthDate.getMonthOfYear()>current.getMonthOfYear()) age--;
+        if(birthDate.getMonthOfYear()==current.getMonthOfYear() && birthDate.getDayOfMonth()>current.getDayOfMonth()) age--;
         return age;
     }
 
@@ -81,8 +83,13 @@ public class Person {
      * Геттер поля дата рождения
      * @return дату рождения человека
      */
-    public LocalDate getBirthDate(){ return birthDate;
-    }
+    public LocalDate getBirthDate(){ return birthDate; }
+
+
+    /**
+     * Переопределние метода toString()
+     * @return
+     */
      public String toString(){
         return "Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
      }
