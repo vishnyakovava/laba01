@@ -6,6 +6,8 @@ package com.netcracker.collections;
 import com.netcracker.entities.Person;
 import com.netcracker.sorter.BubbleSort;
 import com.netcracker.sorter.MySortable;
+import com.netcracker.sorter.ShakerSort;
+
 import  java.util.function.Predicate;
 import java.util.Comparator;
 
@@ -112,7 +114,7 @@ public class PersonList {
      * Сортировка
      * @param comp компаратор
      */
-    public void sortPersonBy(Comparator<Person> comp){
+    public void sortBy(Comparator<Person> comp){
         sorter.sort(people, comp, counter);
     }
 }

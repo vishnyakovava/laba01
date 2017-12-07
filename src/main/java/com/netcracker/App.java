@@ -70,44 +70,22 @@ public class App
         else log.info("Didn't find this person");
 
         System.out.println("Bubble sort by ID");
-        list.sortPersonBy(new Comparator<Person>() {
+        list.sortBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) { return o1.getID()-o2.getID();}
         });
 
         list.printItems();
         log.info("Bubble sort by age");
-        list.sortPersonBy(new Comparator<Person>() {
+        list.sortBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getAge() - o2.getAge();
             }
         });
         list.printItems();
         log.info("Bubble sort by surname");
-        list.sortPersonBy(new Comparator<Person>() {
+        list.sortBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getSurname().compareTo(o2.getSurname());
-            }
-        });
-        list.printItems();
-
-        log.info("Shaker sort by surname");
-        list.sortPersonBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) {
-                return o1.getSurname().compareTo(o2.getSurname());
-            }
-        });
-        list.printItems();
-        log.info("Shaker sort by ID");
-        list.sortPersonBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) {
-                return o1.getID() - o2.getID();
-            }
-        });
-        list.printItems();
-        log.info("Shaker sort by age");
-        list.sortPersonBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) {
-                return o1.getAge()-o2.getAge();
             }
         });
         list.printItems();
@@ -120,7 +98,8 @@ public class App
         Car car4 = new Car("Mazda","cx-5", 128794);
         Car car5 = new Car("Bmw","x6", 998877);
 
-        CarList cars = new CarList(1);
+        //CarList cars = new CarList(1);
+        MyListT<Car> cars = new MyListT<Car>(1);
         cars.add(car1); cars.add(car2); cars.add(car3); cars.add(car4); cars.add(car5);
         cars.printItems();
 

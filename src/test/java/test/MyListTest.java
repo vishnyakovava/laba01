@@ -65,12 +65,12 @@ public class MyListTest {
     }
 
     @Test
-    public void sortPersonByTest(){
+    public void sortByTest(){
         list.add(personTest1);
         list.add(personTest2);
         list.add(personTest3);
 
-        list.sortPersonBy(new Comparator<Person>() {
+        list.sortBy(new Comparator<Person>() {
             @Override
             public int compare(Person o1, Person o2) {
                 return o1.getAge()-o2.getAge();

@@ -31,7 +31,7 @@ public class MyListT<T> extends ListAbstract<T> {
      * Сортировка по определенному параметру, передаваемому в компаратор
      * @param comp - компаратор
      */
-    public void sortPersonBy(Comparator<T> comp) { sorter.sort((T[]) items, comp, counter); }
+    public void sortBy(Comparator<T> comp) { sorter.sort((T[]) items, comp, counter); }
 
     /**
      * Вывод элементов из списка на экран
