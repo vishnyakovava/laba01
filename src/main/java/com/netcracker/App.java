@@ -1,6 +1,6 @@
-package com.netcracker.lab1;
-import com.netcracker.lab1.entities.Person;
-import com.netcracker.lab1.collections.PersonList;
+package com.netcracker;
+import com.netcracker.collections.MyListT;
+import com.netcracker.entities.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
@@ -29,27 +29,27 @@ public class App
         Person person3 = new Person("Nasonova", new LocalDate(1992, 2, 7));
         Person person4 = new Person("Sidorov", new LocalDate(1962, 12, 30));
         Person person5 = new Person("Simonov", new LocalDate(1996, 11, 29));
-        Person person6 = new Person("Aaaaaav", new LocalDate(1996, 11, 27));
+        Person person6 = new Person("Aaaaaa", new LocalDate(1997, 11, 6));
         log.info("Age of person: "+ person5.toString()+": "+person5.getAge());
 
-        PersonList list = new PersonList(1);
-        list.listAdd(person1);
-        list.listAdd(person2);
-        list.listAdd(person3);
-        list.listAdd(person4);
-        list.listAdd(person5);
-        list.listAdd(person6);
-
+        //PersonList list = new PersonList(1);
+        MyListT<Person> list= new MyListT<Person>(1);
+        list.add(person1);
+        list.add(person2);
+        list.add(person3);
+        list.add(person4);
+        list.add(person5);
+        list.add(person6);
 
        log.info("Before remove:");
-        list.printPeople();
+        list.printItems();
 
-        list.listRemove(2);
+        list.remove(2);
         log.info("After remove:");
-        list.printPeople();
+        list.printItems();
 
         log.info("Search:");
-        Person p = list.findPerson(new Predicate<Person>() {
+        Person p = list.find(new Predicate<Person>() {
             @Override
             public boolean test(Person person) {
                 return person.getSurname().equals("Sidorov");
@@ -58,7 +58,7 @@ public class App
         if(p != null) System.out.println(p.toString());
         else log.info("Didn't find this person");
 
-        Person p2 =list.findPerson(new Predicate<Person>() {
+        Person p2 =list.find(new Predicate<Person>() {
             @Override
             public boolean test(Person person) {
                 return person.getID()==5;
@@ -67,27 +67,26 @@ public class App
         if(p2!= null) log.info(p2.toString());
         else log.info("Didn't find this person");
 
-
         System.out.println("Bubble sort by ID");
         list.sortPersonBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) { return o1.getID()-o2.getID();}
         });
 
-        list.printPeople();
+        list.printItems();
         log.info("Bubble sort by age");
         list.sortPersonBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getAge() - o2.getAge();
             }
         });
-        list.printPeople();
+        list.printItems();
         log.info("Bubble sort by surname");
         list.sortPersonBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getSurname().compareTo(o2.getSurname());
             }
         });
-        list.printPeople();
+        list.printItems();
 
         log.info("Shaker sort by surname");
         list.sortPersonBy(new Comparator<Person>() {
@@ -95,23 +94,21 @@ public class App
                 return o1.getSurname().compareTo(o2.getSurname());
             }
         });
-        list.printPeople();
+        list.printItems();
         log.info("Shaker sort by ID");
         list.sortPersonBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getID() - o2.getID();
             }
         });
-        list.printPeople();
+        list.printItems();
         log.info("Shaker sort by age");
         list.sortPersonBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getAge()-o2.getAge();
             }
         });
-        list.printPeople();
-
-
+        list.printItems();
 
     }
 }

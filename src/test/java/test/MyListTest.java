@@ -1,7 +1,7 @@
 package test;
 
-import com.netcracker.lab1.entities.Person;
-import com.netcracker.lab1.collections.PersonList;
+import com.netcracker.entities.Person;
+import com.netcracker.collections.PersonList;
 import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 import static org.junit.Assert.*;
 
-public class PersonListTest {
+public class MyListTest {
 
     private PersonList list = new PersonList(1);
     private Person personTest1, personTest2, personTest3,p;
@@ -30,10 +30,10 @@ public class PersonListTest {
     }
 
     @Test
-    public void listAdd() throws Exception {
-        list.listAdd(personTest1);
+    public void add() throws Exception {
+        list.add(personTest1);
         assertEquals(1,list.size());
-        list.listAdd(personTest2);
+        list.add(personTest2);
         assertEquals(2, list.size());
         assertEquals(personTest1, list.get(0));
         assertEquals(personTest2, list.get(1));
@@ -41,20 +41,20 @@ public class PersonListTest {
     }
 
     @Test
-    public void listRemove() throws Exception {
+    public void remove() throws Exception {
 
-        list.listAdd(personTest1);
-        list.listAdd(personTest2);
-        list.listRemove(2);
+        list.add(personTest1);
+        list.add(personTest2);
+        list.remove(1);
         assertEquals(1, list.size());
     }
 
     @Test
-    public void findPerson() throws Exception {
+    public void find() throws Exception {
 
-        list.listAdd(personTest1);
-        list.listAdd(personTest2);
-        p = list.findPerson(new Predicate<Person>() {
+        list.add(personTest1);
+        list.add(personTest2);
+        p = list.find(new Predicate<Person>() {
             @Override
             public boolean test(Person person) {
                 return person.getSurname().equals("Surname");
@@ -66,9 +66,9 @@ public class PersonListTest {
 
     @Test
     public void sortPersonByTest(){
-        list.listAdd(personTest1);
-        list.listAdd(personTest2);
-        list.listAdd(personTest3);
+        list.add(personTest1);
+        list.add(personTest2);
+        list.add(personTest3);
 
         list.sortPersonBy(new Comparator<Person>() {
             @Override
@@ -83,15 +83,15 @@ public class PersonListTest {
 
     @Test
     public void getTest(){
-        list.listAdd(personTest1);
+        list.add(personTest1);
         String str = list.get(0).getSurname();
         assertEquals("Surname", str);
     }
 
     @Test
     public void sizeTest(){
-        list.listAdd(personTest1);
-        list.listAdd(personTest2);
+        list.add(personTest1);
+        list.add(personTest2);
         int actualSize = list.size();
         assertEquals(2, actualSize);
     }

@@ -1,6 +1,6 @@
-package com.netcracker.lab1.sorter;
+package com.netcracker.sorter;
 
-import com.netcracker.lab1.entities.Person;
+import com.netcracker.entities.Person;
 
 import java.util.Comparator;
 

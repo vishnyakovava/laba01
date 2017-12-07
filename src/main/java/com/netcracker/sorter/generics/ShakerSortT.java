@@ -1,24 +1,17 @@
-package com.netcracker.lab1.sorter;
+package com.netcracker.sorter.generics;
 
-import com.netcracker.lab1.entities.Person;
+import com.netcracker.entities.Person;
 
 import java.util.Comparator;
 
-public class ShakerSort implements MySortable {
-    /**
-     * Шейкерная сортировка
-     * @param mas - массив, который сортируем
-     * @param comparator - компаратор
-     * @return отсортированный массив
-     */
-    @Override
-    public void sort(Person[] mas, Comparator comparator, int counter) {
+public class ShakerSortT<T> implements MySortableT<T>{
+    public void sort(T[] mas, Comparator<T> comparator, int counter) {
         boolean wasSwapped;
-        Person temp;
+        T temp;
         do {
             wasSwapped=false;
             for (int i = 0; i < counter - 2; i++) {
-                if (comparator.compare(mas[i], mas[i + 1])>=1) {
+                if (comparator.compare((T)mas[i], (T)mas[i + 1])>=1) {
                     temp = mas[i];
                     mas[i]=mas[i+1];
                     mas[i+1]=temp;
@@ -30,7 +23,7 @@ public class ShakerSort implements MySortable {
 
             wasSwapped=false;
             for (int j = counter-2; j >= 0; j--) {
-                if(comparator.compare(mas[j],mas[j+1])>=1){
+                if(comparator.compare((T)mas[j],(T)mas[j+1])>=1){
                     temp = mas[j];
                     mas[j]=mas[j+1];
                     mas[j+1]=temp;

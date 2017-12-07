@@ -1,4 +1,4 @@
-package com.netcracker.lab1.entities;
+package com.netcracker.entities;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -36,7 +36,7 @@ public class Person {
         DateTime current = new DateTime();
         int age = current.getYear() - birthDate.getYear();
         if(birthDate.getMonthOfYear()>current.getMonthOfYear()) age--;
-        if(birthDate.getMonthOfYear()==current.getMonthOfYear() && birthDate.getDayOfMonth()>current.getDayOfMonth()) age--;
+        if(birthDate.getMonthOfYear()==current.getMonthOfYear() && birthDate.getDayOfMonth()<current.getDayOfMonth()) age++;
         return age;
     }
 
@@ -44,16 +44,13 @@ public class Person {
      * Сеттер поля ID
      * @param ID - идентификатор человека
      */
-    private void setID(int ID){
-        this.ID = ID;
-    }
+    private void setID(int ID){ this.ID = ID; }
 
     /**
      * Геттер поля ID
      * @return ID человека
      */
-    public int getID(){ return ID;
-    }
+    public int getID(){ return ID; }
 
     /**
      * Сеттер поля фамилия
@@ -67,8 +64,7 @@ public class Person {
      * Геттер поля фамилия
      * @return фамилию человека
      */
-    public String getSurname(){ return surname;
-    }
+    public String getSurname(){ return surname; }
 
     /**
      * Сеттер поля дата рождения
@@ -84,12 +80,11 @@ public class Person {
      */
     public LocalDate getBirthDate(){ return birthDate; }
 
-
     /**
      * Переопределние метода toString()
      * @return
      */
      public String toString(){
-        return "Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
+        return this.getClass().getSimpleName() + "Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
      }
 }

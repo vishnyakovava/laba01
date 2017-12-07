@@ -1,14 +1,11 @@
-package com.netcracker.lab1.collections;
-// сделать возможнотсь сортировки людей по фамилии, по возрасту, по id.сделать универсально.
-// использовать разные виды сортировок. поиск (по тем же параметрам)
-//
-// добавить поддержку unitest (подсчет возраста, сортировка)
+package com.netcracker.collections;
+// переделать на обобщенный список
+// добавтиь еще сущность машина,репозиторий машин
+// сделать интерфейс репозитория, какие методы общие для всех репозиториев, которые можно вытащить в абстрактный класс репозиториев.
 
-
-import com.netcracker.lab1.entities.Person;
-import com.netcracker.lab1.sorter.BubbleSort;
-import com.netcracker.lab1.sorter.MySortable;
-
+import com.netcracker.entities.Person;
+import com.netcracker.sorter.BubbleSort;
+import com.netcracker.sorter.MySortable;
 import  java.util.function.Predicate;
 import java.util.Comparator;
 
@@ -57,7 +54,7 @@ public class PersonList {
      * Метод добавления элемента в список
      * @param person
      */
-    public void listAdd(Person person){
+    public void add(Person person){
         if(counter == quantity){
             Person[] newPeople  = new Person[quantity+1];
             System.arraycopy(people, 0, newPeople, 0, people.length);
@@ -70,17 +67,13 @@ public class PersonList {
 
     /**
      * Метод удаления элемента из списка
-     * @param id - идентификатор человека
+     * @param index - индекс в массиве
      */
-    public  void listRemove(int id){
+    public  void remove(int index){
         Person[] new1 = new Person[quantity - 1];
-        for(int i=0; i<people.length; i++){
-            if(people[i].getID()==id){
-                System.arraycopy(people, 0, new1, 0, i);
-                System.arraycopy(people, i+1, new1, i, people.length-i-1);
-                people = new1;
-            }
-        }
+        System.arraycopy(people, 0, new1, 0, people.length-index-1);
+        System.arraycopy(people, index+1, new1, index, people.length-index-1);
+        people = new1;
         counter--;
         quantity--;
     }
@@ -88,7 +81,7 @@ public class PersonList {
     /**
      * Метод вывода элементов списка людей
      */
-    public void printPeople(){
+    public void printItems(){
         for(int i=0; i<counter; i++){
             if (people[i] == null) break;
             System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate() +" Age: "+people[i].getAge());
@@ -100,7 +93,7 @@ public class PersonList {
      * @param predicate - предикат
      * @return объект, найденный по параметру поиска
      */
-    public Person findPerson(Predicate<Person> predicate){
+    public Person find(Predicate<Person> predicate){
         for(int i=0; i<counter; i++){
             if(predicate.test(people[i]))
                 return people[i];

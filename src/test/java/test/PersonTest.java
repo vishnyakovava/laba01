@@ -1,6 +1,6 @@
 package test;
 
-import com.netcracker.lab1.entities.Person;
+import com.netcracker.entities.Person;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
