@@ -12,9 +12,9 @@ public class ShakerSort implements MySortable {
      * @return отсортированный массив
      */
     @Override
-    public void sort(Person[] mas, Comparator comparator, int counter) {
+    public void sort(Object[] mas, Comparator comparator, int counter) {
         boolean wasSwapped;
-        Person temp;
+        Object temp;
         do {
             wasSwapped=false;
             for (int i = 0; i < counter - 2; i++) {

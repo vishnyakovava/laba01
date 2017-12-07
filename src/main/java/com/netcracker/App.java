@@ -1,5 +1,7 @@
 package com.netcracker;
+import com.netcracker.collections.CarList;
 import com.netcracker.collections.MyListT;
+import com.netcracker.entities.Car;
 import com.netcracker.entities.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -109,6 +111,18 @@ public class App
             }
         });
         list.printItems();
+
+
+        log.info("Cars");
+        Car car1 = new Car("Nissan","gt-r", 123321);
+        Car car2 = new Car("Opel","astra", 123456);
+        Car car3 = new Car("Lada","vesta", 252526);
+        Car car4 = new Car("Mazda","cx-5", 128794);
+        Car car5 = new Car("Bmw","x6", 998877);
+
+        CarList cars = new CarList(1);
+        cars.add(car1); cars.add(car2); cars.add(car3); cars.add(car4); cars.add(car5);
+        cars.printItems();
 
     }
 }

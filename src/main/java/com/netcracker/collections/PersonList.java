@@ -84,7 +84,7 @@ public class PersonList {
     public void printItems(){
         for(int i=0; i<counter; i++){
             if (people[i] == null) break;
-            System.out.println("ID: " +people[i].getID() + ", Surname: " + people[i].getSurname() + ", Date of birth: " + people[i].getBirthDate() +" Age: "+people[i].getAge());
+            System.out.println(people[i].toString() +" Age: "+people[i].getAge());
         }
     }
 

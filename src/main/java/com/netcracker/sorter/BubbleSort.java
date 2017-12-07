@@ -12,8 +12,8 @@ public class BubbleSort implements MySortable {
      * @param comparator - компаратор
      * @return отсортированный массив
      */
-    public void sort(Person[] mas, Comparator comparator, int counter) {
-        Person temp;
+    public void sort(Object[] mas, Comparator comparator, int counter) {
+        Object temp;
         for(int i=0; i<counter-1; i++) {
             for (int j = counter - 1; j > i; j--) {
                 if (comparator.compare(mas[j - 1], mas[j]) >= 1) {
