@@ -1,10 +1,12 @@
 package com.netcracker.common;
 
+import com.netcracker.collections.MyListT;
 import com.netcracker.sorter.generics.MySortableT;
-
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 public abstract class ListAbstract<T> implements ListInterface<T> {
+
     protected Object[] items;
     protected int quantity;
     protected int counter=0;
@@ -25,11 +27,10 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
     /**
      * @return возвращает массив без пустых ячеек
      */
-    public Object[] toArray(){
+    public T[] toArray(){
         Object[] newItems =  new Object[counter];
         System.arraycopy(items, 0, newItems, 0, counter );
-        items = newItems;
-        return items;
+        return (T[])newItems;
     }
 
     /**
@@ -38,10 +39,10 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
      */
     public void add(Object item){
         if(counter == quantity){
-            Object[] newPeople  = new Object[quantity+1];
+            Object[] newPeople  = new Object[quantity*2];
             System.arraycopy(items, 0, newPeople, 0, items.length);
             items = newPeople;
-            quantity++;
+            quantity*=2;
         }
         items[counter] = item;
         counter++;
@@ -78,14 +79,30 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
      * @param predicate
      * @return элемент списка
      */
-    public T find(Predicate<T> predicate){
+    public T[] find(Predicate<T> predicate){
+        MyListT<T> listT = new MyListT<>(5);
         for(int i=0; i<counter; i++){
             if(predicate.test((T)items[i]))
-                return (T)items[i];
+                listT.add((T)items[i]);
         }
-        return null;
+        return (T[])listT.toArray();
     }
 
+    /**
+     * Устанавливает вид сортировки
+     * @param sorter вид сортировки
+     */
+    public void setSorter(MySortableT<T> sorter){
+        this.sorter = sorter;
+    }
+
+    /**
+     * Сортировка списка
+     * @param comp параметр сортировки
+     */
+    public void sortBy(Comparator<T> comp){
+        sorter.sort((T[])items, comp, counter);
+    }
 
 
 

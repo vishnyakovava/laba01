@@ -51,17 +51,7 @@ public class MyListTest {
 
     @Test
     public void find() throws Exception {
-
-        list.add(personTest1);
-        list.add(personTest2);
-        p = list.find(new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getSurname().equals("Surname");
-            }
-        });
-        String str = p.getSurname();
-        assertEquals("Surname", str);
+            // to do
     }
 
     @Test

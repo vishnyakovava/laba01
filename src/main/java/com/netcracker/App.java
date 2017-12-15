@@ -1,6 +1,8 @@
 package com.netcracker;
 import com.netcracker.collections.CarList;
 import com.netcracker.collections.MyListT;
+import com.netcracker.collections.PersonList;
+import com.netcracker.collections.RepPerson;
 import com.netcracker.entities.Car;
 import com.netcracker.entities.Person;
 import org.apache.logging.log4j.LogManager;
@@ -15,10 +17,7 @@ import org.joda.time.LocalDate;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
-/**
- * Hello world!
- *
- */
+/* рефлексия */
 public class App 
 {
     private static Logger log = LogManager.getLogger(App.class.getName());
@@ -35,7 +34,8 @@ public class App
         log.info("Age of person: "+ person5.toString()+": "+person5.getAge());
 
         //PersonList list = new PersonList(1);
-        MyListT<Person> list= new MyListT<Person>(1);
+        //MyListT<Person> list= new MyListT<Person>(1);
+        RepPerson list = new RepPerson(1);
         list.add(person1);
         list.add(person2);
         list.add(person3);
@@ -51,45 +51,7 @@ public class App
         list.printItems();
 
         log.info("Search:");
-        Person p = list.find(new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getSurname().equals("Sidorov");
-            }
-        });
-        if(p != null) System.out.println(p.toString());
-        else log.info("Didn't find this person");
-
-        Person p2 =list.find(new Predicate<Person>() {
-            @Override
-            public boolean test(Person person) {
-                return person.getID()==5;
-            }
-        });
-        if(p2!= null) log.info(p2.toString());
-        else log.info("Didn't find this person");
-
-        System.out.println("Bubble sort by ID");
-        list.sortBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) { return o1.getID()-o2.getID();}
-        });
-
-        list.printItems();
-        log.info("Bubble sort by age");
-        list.sortBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        });
-        list.printItems();
-        log.info("Bubble sort by surname");
-        list.sortBy(new Comparator<Person>() {
-            public int compare(Person o1, Person o2) {
-                return o1.getSurname().compareTo(o2.getSurname());
-            }
-        });
-        list.printItems();
-
+        //Person[] pers = list.findByAge(5);
 
         log.info("Cars");
         Car car1 = new Car("Nissan","gt-r", 123321);
@@ -104,4 +66,5 @@ public class App
         cars.printItems();
 
     }
+
 }

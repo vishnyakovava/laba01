@@ -40,6 +40,6 @@ public interface ListInterface<T> {
      * Поиск по предикату
      * @return найденный элемент
      */
-    T find(Predicate<T> predicate);
+    T[] find(Predicate<T> predicate);
 
 }

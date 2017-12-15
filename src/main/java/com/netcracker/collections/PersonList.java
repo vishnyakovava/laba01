@@ -1,21 +1,13 @@
 package com.netcracker.collections;
-// переделать на обобщенный список
-// добавтиь еще сущность машина,репозиторий машин
-// сделать интерфейс репозитория, какие методы общие для всех репозиториев, которые можно вытащить в абстрактный класс репозиториев.
 
+import com.netcracker.common.ListAbstract;
 import com.netcracker.entities.Person;
 import com.netcracker.sorter.BubbleSort;
 import com.netcracker.sorter.MySortable;
-import com.netcracker.sorter.ShakerSort;
-
 import  java.util.function.Predicate;
 import java.util.Comparator;
 
-/**
- * Класс списка людей
- * @author Valeria Vishnyakova
- */
-public class PersonList {
+public class PersonList extends ListAbstract<Person> {
     /** Поле массив людей*/
     private Person[] people;
     /** Поле размера массива при создании списка людей*/
@@ -95,13 +87,15 @@ public class PersonList {
      * @param predicate - предикат
      * @return объект, найденный по параметру поиска
      */
-    public Person find(Predicate<Person> predicate){
+    public Person[] find(Predicate<Person> predicate){
+        PersonList listP = new PersonList(5);
         for(int i=0; i<counter; i++){
             if(predicate.test(people[i]))
-                return people[i];
+                listP.add(people[i]);
         }
-        return null;
+        return listP.toArray();
     }
+
 
     /**
      * Установка параметра сортировки

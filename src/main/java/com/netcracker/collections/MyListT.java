@@ -3,9 +3,15 @@ import com.netcracker.common.ListAbstract;
 import com.netcracker.sorter.generics.BubbleSortT;
 import com.netcracker.sorter.generics.MySortableT;
 import java.util.Comparator;
+import java.util.Iterator;
 
-public class MyListT<T> extends ListAbstract<T> {
+public class MyListT<T> extends ListAbstract<T> implements Iterable<T> {
 
+    /**
+     * Конструктор класса
+     * @param quantity изначальный размер
+     * @param <T> параметр типа
+     */
     public <T> MyListT(int quantity) {
         this.items = new Object[quantity];
         this.quantity = quantity;
@@ -40,6 +46,32 @@ public class MyListT<T> extends ListAbstract<T> {
         for(int i=0; i<counter; i++){
             if (items[i] == null) break;
             System.out.println(items[i].toString());
+        }
+    }
+
+    /**
+     *
+     * @return итератор
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new MyIterator<T>();
+    }
+
+    /**
+     * класс итератора
+     * @param <T> обобщенный параметр
+     */
+    class MyIterator<T> implements  Iterator<T>{
+        int currentItem=0;
+        @Override
+        public boolean hasNext() {
+            return currentItem<counter;
+        }
+
+        @Override
+        public T next() {
+            return (T)items[currentItem++];
         }
     }
 
