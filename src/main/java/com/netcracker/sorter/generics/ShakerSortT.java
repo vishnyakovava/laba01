@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 public class ShakerSortT<T> implements MySortableT<T>{
     public void sort(T[] mas, Comparator<T> comparator, int counter) {
+        System.out.println("Sort type: shaker");
         boolean wasSwapped;
         T temp;
         do {

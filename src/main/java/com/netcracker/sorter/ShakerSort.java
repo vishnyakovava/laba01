@@ -13,6 +13,7 @@ public class ShakerSort implements MySortable {
      */
     @Override
     public void sort(Object[] mas, Comparator comparator, int counter) {
+        System.out.println("Sort type: shaker");
         boolean wasSwapped;
         Object temp;
         do {

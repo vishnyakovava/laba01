@@ -33,8 +33,9 @@ public class App
         Person person6 = new Person("Aaaaaa", new LocalDate(1997, 11, 6));
         log.info("Age of person: "+ person5.toString()+": "+person5.getAge());
 
-        //PersonList list = new PersonList(1);
-        //MyListT<Person> list= new MyListT<Person>(1);
+//        PersonList list = new PersonList(1);
+//
+// MyListT<Person> list= new MyListT<Person>(1);
         RepPerson list = new RepPerson(1);
         list.add(person1);
         list.add(person2);
@@ -42,6 +43,10 @@ public class App
         list.add(person4);
         list.add(person5);
         list.add(person6);
+
+        log.info("sorting:");
+        list.sortBySurname();
+        list.printItems();
 
        log.info("Before remove:");
         list.printItems();
@@ -64,6 +69,8 @@ public class App
         MyListT<Car> cars = new MyListT<Car>(1);
         cars.add(car1); cars.add(car2); cars.add(car3); cars.add(car4); cars.add(car5);
         cars.printItems();
+
+        ;
 
     }
 

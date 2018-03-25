@@ -2,6 +2,8 @@ package com.netcracker.collections;
 
 import com.netcracker.common.ListAbstract;
 import com.netcracker.entities.Person;
+import com.netcracker.injector.Injector;
+import com.netcracker.sorter.Sorting;
 import com.netcracker.sorter.generics.BubbleSortT;
 import com.netcracker.sorter.generics.MySortableT;
 import java.time.LocalDate;
@@ -91,7 +93,7 @@ public class RepPerson extends ListAbstract<Person>{
      * Сортировка по фамилии
      */
     public void sortBySurname(){
-        sortBy(new Comparator<Person>() {
+       sortBy(new Comparator<Person>() {
             public int compare(Person o1, Person o2) {
                 return o1.getSurname().compareTo(o2.getSurname());
             }

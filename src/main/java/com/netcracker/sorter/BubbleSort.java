@@ -13,6 +13,7 @@ public class BubbleSort implements MySortable {
      * @return отсортированный массив
      */
     public void sort(Object[] mas, Comparator comparator, int counter) {
+        System.out.println("Sort type: bubble");
         Object temp;
         for(int i=0; i<counter-1; i++) {
             for (int j = counter - 1; j > i; j--) {

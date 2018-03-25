@@ -1,7 +1,14 @@
 package com.netcracker.common;
 
+import com.netcracker.annotation.AutoInjectable;
 import com.netcracker.collections.MyListT;
+import com.netcracker.collections.PersonList;
+import com.netcracker.injector.Injector;
+import com.netcracker.sorter.Sorting;
 import com.netcracker.sorter.generics.MySortableT;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -11,6 +18,7 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
     protected int quantity;
     protected int counter=0;
     protected MySortableT<T> sorter;
+    private static final Logger log = LogManager.getLogger(PersonList.class.getName());
 
     /**
      * @return размер коллекции
@@ -93,7 +101,7 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
      * @param sorter вид сортировки
      */
     public void setSorter(MySortableT<T> sorter){
-        this.sorter = sorter;
+//        this.sorter = sorter;
     }
 
     /**
@@ -101,6 +109,8 @@ public abstract class ListAbstract<T> implements ListInterface<T> {
      * @param comp параметр сортировки
      */
     public void sortBy(Comparator<T> comp){
+        Sorting sorter = (Sorting) (new Injector()).inject(new Sorting());
+        log.debug("sort type"+sorter.toString());
         sorter.sort((T[])items, comp, counter);
     }
 

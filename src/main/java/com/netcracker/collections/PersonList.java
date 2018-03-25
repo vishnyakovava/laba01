@@ -2,8 +2,10 @@ package com.netcracker.collections;
 
 import com.netcracker.common.ListAbstract;
 import com.netcracker.entities.Person;
-import com.netcracker.sorter.BubbleSort;
-import com.netcracker.sorter.MySortable;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import  java.util.function.Predicate;
 import java.util.Comparator;
 
@@ -14,8 +16,9 @@ public class PersonList extends ListAbstract<Person> {
     private int quantity; // передаем в конструктор для обозначения изначального размера массива
     /** Поле количества людей в массиве*/
     private int counter=0;
-    /** Параметр сортировки*/
-    private MySortable sorter;
+
+    private static final Logger log = LogManager.getLogger(PersonList.class.getName());
+
 
     /**
      * Конструктор
@@ -24,7 +27,6 @@ public class PersonList extends ListAbstract<Person> {
     public PersonList(int quantity){
         this.people = new Person[quantity];
         this.quantity = quantity;
-        this.sorter = new BubbleSort();
     }
 
     /**
@@ -100,15 +102,28 @@ public class PersonList extends ListAbstract<Person> {
     /**
      * Установка параметра сортировки
      */
-    public void setSorter(MySortable sorter){
-        this.sorter = sorter;
+    public void setSorter(PropertiesConfiguration config){
+       /* try {
+            config = new PropertiesConfiguration("app.properties");
+            String sortType = config.getString("sorter");
+            switch(sortType) {
+                case "bubble": this.sorter = new BubbleSort();
+                case "shaker": this.sorter = new ShakerSort();
+            }
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }*/
     }
+
 
     /**
      * Сортировка
      * @param comp компаратор
      */
     public void sortBy(Comparator<Person> comp){
+//        Sorting sorter = (Sorting) (new Injector()).inject(new Sorting());
+//        log.debug("sort type"+sorter.toString());
         sorter.sort(people, comp, counter);
+
     }
 }
