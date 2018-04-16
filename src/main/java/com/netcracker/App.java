@@ -1,21 +1,17 @@
 package com.netcracker;
-import com.netcracker.collections.CarList;
 import com.netcracker.collections.MyListT;
-import com.netcracker.collections.PersonList;
 import com.netcracker.collections.RepPerson;
 import com.netcracker.entities.Car;
 import com.netcracker.entities.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
-// разобаться с properties, создать пустой файл с расширением properties, в нем sorter=bubble
-// в этом файле будет храниться конфигурация приложения
-// напистаь класс Configurator, считывает файл properties и возвращает результаты
-//public static Configurator(), getInstance(),
-// sorter = Configurator.getInstance().getSorter()
 
-import java.util.Comparator;
-import java.util.function.Predicate;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 
 /* рефлексия */
 public class App 
@@ -24,18 +20,18 @@ public class App
 
     public static void main( String[] args )
     {
-
         Person person1 = new Person("Maslov", new LocalDate(1996, 8, 29));
         Person person2 = new Person("Zavodova", new LocalDate(2000, 7, 26));
         Person person3 = new Person("Nasonova", new LocalDate(1992, 2, 7));
         Person person4 = new Person("Sidorov", new LocalDate(1962, 12, 30));
         Person person5 = new Person("Simonov", new LocalDate(1996, 11, 29));
         Person person6 = new Person("Aaaaaa", new LocalDate(1997, 11, 6));
+
+
         log.info("Age of person: "+ person5.toString()+": "+person5.getAge());
 
-//        PersonList list = new PersonList(1);
-//
-// MyListT<Person> list= new MyListT<Person>(1);
+//      PersonList list = new PersonList(1);
+//      MyListT<Person> list= new MyListT<Person>(1);
         RepPerson list = new RepPerson(1);
         list.add(person1);
         list.add(person2);
@@ -48,7 +44,7 @@ public class App
         list.sortBySurname();
         list.printItems();
 
-       log.info("Before remove:");
+        log.info("Before remove:");
         list.printItems();
 
         list.remove(2);
@@ -56,7 +52,7 @@ public class App
         list.printItems();
 
         log.info("Search:");
-        //Person[] pers = list.findByAge(5);
+//      Person[] pers = list.findByAge(5);
 
         log.info("Cars");
         Car car1 = new Car("Nissan","gt-r", 123321);
@@ -65,12 +61,10 @@ public class App
         Car car4 = new Car("Mazda","cx-5", 128794);
         Car car5 = new Car("Bmw","x6", 998877);
 
-        //CarList cars = new CarList(1);
+//      CarList cars = new CarList(1);
         MyListT<Car> cars = new MyListT<Car>(1);
         cars.add(car1); cars.add(car2); cars.add(car3); cars.add(car4); cars.add(car5);
         cars.printItems();
-
-        ;
 
     }
 

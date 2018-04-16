@@ -4,12 +4,20 @@ import com.netcracker.entities.Car;
 import com.netcracker.sorter.BubbleSort;
 import com.netcracker.sorter.MySortable;
 
+import javax.xml.bind.annotation.*;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
+@XmlRootElement(name = "cars")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CarList {
+    @XmlElement(name = "car")
     private Car[] parking;
-    private int capacity, counter = 0;
+    @XmlElement
+    private int capacity;
+    @XmlElement
+    private  int counter = 0;
+    @XmlTransient
     private MySortable sorter;
 
     public CarList(int capacity){
@@ -18,6 +26,7 @@ public class CarList {
         this.sorter = new BubbleSort();
     }
 
+    public CarList(){}
 
     public int size(){
         return counter;

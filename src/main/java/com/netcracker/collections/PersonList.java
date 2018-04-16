@@ -6,19 +6,25 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.xml.bind.annotation.*;
 import  java.util.function.Predicate;
 import java.util.Comparator;
 
+@XmlRootElement(name = "people")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PersonList extends ListAbstract<Person> {
     /** Поле массив людей*/
+    @XmlElement(name = "person")
     private Person[] people;
     /** Поле размера массива при создании списка людей*/
+    @XmlElement
     private int quantity; // передаем в конструктор для обозначения изначального размера массива
     /** Поле количества людей в массиве*/
+    @XmlElement
     private int counter=0;
 
     private static final Logger log = LogManager.getLogger(PersonList.class.getName());
-
+    public PersonList(){}
 
     /**
      * Конструктор
@@ -80,7 +86,7 @@ public class PersonList extends ListAbstract<Person> {
     public void printItems(){
         for(int i=0; i<counter; i++){
             if (people[i] == null) break;
-            System.out.println(people[i].toString() +" Age: "+people[i].getAge());
+            System.out.println(people[i].toString() +", Age: "+people[i].getAge());
         }
     }
 

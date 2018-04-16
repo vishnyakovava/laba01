@@ -1,9 +1,18 @@
 package com.netcracker.entities;
 
+import javax.xml.bind.annotation.*;
+
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"model", "brand", "serialNumber"})
 public class Car {
+    @XmlElement
     private String model;
+    @XmlElement
     private String brand;
+    @XmlAttribute
     private int ID;
+    @XmlElement
     private int serialNumber;
     private static int id=0;
 
@@ -19,6 +28,8 @@ public class Car {
         id++;
         this.ID = id;
     }
+
+    public Car(){}
 
     /**
      * Геттер ID
@@ -66,6 +77,6 @@ public class Car {
      * @return информацию о машине
      */
     public String toString(){
-        return this.getClass().getSimpleName() + "Brand:"+getBrand() +", Model:"+getModel()+", ID:"+getID()+", serial number:"+getSerialNumber();
+        return "Class: " + this.getClass().getSimpleName() + ", Brand:"+getBrand() +", Model:"+getModel()+", ID:"+getID()+", serial number:"+getSerialNumber();
     }
 }

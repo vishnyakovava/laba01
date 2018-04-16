@@ -1,18 +1,28 @@
 package com.netcracker.entities;
 
+import com.netcracker.LocalDateAdapter;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * Класс человека
  * @author Valeria Vishnyakova
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = {"surname", "birthDate"})
 public class Person {
     /** Поле фамилия*/
+    @XmlElement
     private String surname;
     /** Поле дата рождения*/
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate birthDate;
     /** Поле индентификатор*/
+    // указываем, что id должно быть атрибутом
+    @XmlAttribute
     private int ID; // индентификатор
     private static int id=0;
 
@@ -27,6 +37,9 @@ public class Person {
         id++;
         this.ID = id;
     }
+
+    public Person(){}
+
 
     /**
      * Метод подсчета возраста
@@ -50,6 +63,8 @@ public class Person {
      * Геттер поля ID
      * @return ID человека
      */
+
+
     public int getID(){ return ID; }
 
     /**
@@ -85,6 +100,6 @@ public class Person {
      * @return
      */
      public String toString(){
-        return this.getClass().getSimpleName() + "Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
+        return "Class: " + this.getClass().getSimpleName() + ", Surname:"+getSurname()+", ID:"+getID()+", Date of birth:"+getBirthDate();
      }
 }

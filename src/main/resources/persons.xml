@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+    <person id="1">
+        <surname>Sunders</surname>
+        <birthDate>1992-08-29</birthDate>
+    </person>
+    <person id="2">
+        <surname>Jonson</surname>
+        <birthDate>1958-03-18</birthDate>
+    </person>
+    <quantity>2</quantity>
+    <counter>2</counter>
+</people>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cars>
+    <car id="1">
+        <model>gt-r</model>
+        <brand>Nissan</brand>
+        <serialNumber>123321</serialNumber>
+    </car>
+    <car id="2">
+        <model>astra</model>
+        <brand>Opel</brand>
+        <serialNumber>123456</serialNumber>
+    </car>
+    <capacity>2</capacity>
+    <counter>2</counter>
+</cars>
